@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -64,7 +65,7 @@ public class MetadataGeneratorIT {
 
   @Before
   public void setUp() throws Exception {
-    dbFile = createTempFile("db_file", "sqlite");
+    dbFile = Files.createTempFile("db_file", "sqlite").toFile();
   }
 
   @After

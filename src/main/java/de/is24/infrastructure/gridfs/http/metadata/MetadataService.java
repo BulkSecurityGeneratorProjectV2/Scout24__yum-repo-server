@@ -25,6 +25,7 @@ import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -169,7 +170,7 @@ public class MetadataService {
                                                                                                SQLException {
     long start = System.currentTimeMillis();
     long current;
-    File tempDbFile = createTempFile(reponame + "-" + dbGenerator.getName(), ".sqlite", tmpDir);
+    File tempDbFile = Files.createTempFile(tmpDir.toPath(), reponame + "-" + dbGenerator.getName(), ".sqlite").toFile();
     try {
       dbGenerator.createDb(tempDbFile, entries);
       current = System.currentTimeMillis();
